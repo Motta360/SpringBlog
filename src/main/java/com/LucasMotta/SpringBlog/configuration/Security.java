@@ -18,7 +18,7 @@ public class Security {
 		})
 		
 		.authorizeHttpRequests(auth -> {
-			auth.requestMatchers("/").permitAll();
+			auth.requestMatchers("/","/register").permitAll();
 			auth.anyRequest().authenticated();
 		});
 		
