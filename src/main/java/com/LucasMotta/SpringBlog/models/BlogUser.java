@@ -1,11 +1,14 @@
 package com.LucasMotta.SpringBlog.models;
 
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class BlogUser {
@@ -15,6 +18,9 @@ public class BlogUser {
 
 	private String name;
 	private String password;
+
+	@OneToMany(mappedBy = "author")
+	private List<Post> posts;
 
 	public BlogUser() {
 	}
@@ -49,6 +55,10 @@ public class BlogUser {
 		this.password = password;
 	}
 
+	public List<Post> getPosts() {
+		return posts;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id, name, password);
@@ -66,7 +76,5 @@ public class BlogUser {
 		return Objects.equals(id, other.id) && Objects.equals(name, other.name)
 				&& Objects.equals(password, other.password);
 	}
-	
-	
 
 }
