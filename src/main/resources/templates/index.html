@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,5 +9,13 @@
     <h1>Spring Blog</h1>
     <h3>By Lucas Motta Teixeira</h3>
     <br>
+    <div class = "posts">
+        <div class="post" th:each="post: ${posts}">
+            <h1 th:text="${post.title}"></h1><br>
+            <h2 th:text="${post.text}"></h2><br>
+            <h3 th:text="'Created by' + ${post.author.name} "></h3>
+        </div>
+
+    </div>
 </body>
 </html>

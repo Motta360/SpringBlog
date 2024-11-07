@@ -15,7 +15,7 @@ public class Post {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+	private String title;
 	private String text;
 	private LocalDate date;
 	
@@ -26,11 +26,12 @@ public class Post {
 	public Post() {
 	}
 
-	public Post(Long id, String text, LocalDate date, BlogUser author) {
+	public Post(Long id, String text, LocalDate date, BlogUser author, String title) {
 		this.id = id;
 		this.text = text;
 		this.date = date;
 		this.author = author;
+		this.title = title;
 	}
 
 	public Long getId() {
@@ -63,6 +64,16 @@ public class Post {
 
 	public void setAuthor(BlogUser author) {
 		this.author = author;
+	}
+	
+	
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	@Override
