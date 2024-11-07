@@ -14,6 +14,7 @@ public class Security {
 	public SecurityFilterChain securityFilterChain(HttpSecurity https) throws Exception {
 		https.formLogin(login -> {
 			login.loginPage("/login").permitAll();
+			login.defaultSuccessUrl("/");
 		})
 		
 		.authorizeHttpRequests(auth -> {
