@@ -22,11 +22,12 @@ public class DataSeed implements CommandLineRunner {
 	
 	@Override
 	public void run(String... args) throws Exception {
+		/*
 		BlogUser u1 = new BlogUser(null, "lucas", "123");
 		userRepository.save(u1);
 		
 		Post p1 = new Post(null, "Primeiro Post de todos", LocalDate.now(), u1, "First");
-		postRepository.save(p1);
+		postRepository.save(p1); */
 		
 	}
 	

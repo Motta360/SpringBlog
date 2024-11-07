@@ -1,6 +1,7 @@
 package com.LucasMotta.SpringBlog.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,9 @@ public class RegistrationController {
 	@Autowired
 	UserRepository userRepository;
 	
+	@Autowired
+	PasswordEncoder passwordEncoder;
+	
 	@GetMapping("/register")
 	public String getRegistrationPage(Model model) {
 		BlogUser u1 = new BlogUser();
@@ -25,6 +29,7 @@ public class RegistrationController {
 	
 	@PostMapping("/register")
 	public String register(@ModelAttribute BlogUser user) {
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		userRepository.save(user);
 		
 		return "redirect:/login";
