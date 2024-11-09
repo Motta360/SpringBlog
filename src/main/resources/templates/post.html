@@ -6,7 +6,14 @@
     <title>Document</title>
 </head>
 <body>
-
+    <nav>
+        <ul>
+            <a href="/">Inicio</a>
+            <a href="/login">Login</a>
+            <a href="/register">Register</a>
+            <a href="/newPost">New Post</a>
+        </ul>
+    </nav>
     <h1 th:text="${post.title}"></h1><br>
     <h2 th:text="${post.text}"></h2><br>
     <h3 th:text="${post.date}"></h3>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Post</title>
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <a href="/">Inicio</a>
+            <a href="/login">Login</a>
+            <a href="/register">Register</a>
+            <a href="/newPost">New Post</a>
+            
+        </ul>
+    </nav>
+
+    <form action="" th:object="${post}" th:action="@{/newPost}" method="post">
+        <label for="Title" th:text="Title"></label><br>
+        <input type="text" name="Title" id="Title" th:field="*{title}"><br>
+        <label for="Text">Text</label><br>
+        <textarea name="Text" id="Text" cols="30" rows="10" th:field="*{text}"></textarea>
+        <button type="submit">Post</button>
+    </form>
+    
+</body>
+</html>
