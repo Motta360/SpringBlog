@@ -27,11 +27,11 @@ public class PostController {
 	@Autowired
 	UserRepository userRepository;
 	
+	
 	@GetMapping("/post/{id}")
 	public String getPostPage(@PathVariable Long id,Model model) {
 		Post post = postRepository.findById(id).get();
 		model.addAttribute("post", post);
-		
 		return "post";
 	}
 	

@@ -17,5 +17,5 @@
     <h1 th:text="${post.title}"></h1><br>
     <h2 th:text="${post.text}"></h2><br>
     <h3 th:text="${post.date}"></h3>
-</body>
+    <h3><a th:href="@{'/user/'+${post.author.id}}" th:text="'Made by : '+ ${post.author.name} "> </a></h3>
 </html>
