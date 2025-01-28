@@ -1,5 +1,6 @@
 package com.LucasMotta.SpringBlog.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.validator.constraints.ISBN;
@@ -36,7 +37,14 @@ public class HomeController {
 		}
 		
 		List<Post> posts = postRepository.findAll();
-		model.addAttribute("posts",posts);
+		List<Post> posts2 = new ArrayList<>();
+		
+		for (int i = posts.size()-1; i >= 0 ; i--) {
+			posts2.add(posts.get(i));
+			
+		}
+		
+		model.addAttribute("posts",posts2);
 		model.addAttribute("currentUser", currentUser);
 		return "index";
 	}

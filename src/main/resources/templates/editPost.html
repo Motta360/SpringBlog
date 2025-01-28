@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Editar Post</title>
 </head>
 <body>
     <nav>
@@ -14,16 +14,18 @@
             <a href="/newPost">New Post</a>
         </ul>
     </nav>
-    <h1 th:text="${post.title}"></h1><br>
-    <h2 th:text="${post.text}"></h2><br>
+
+    <form action="" th:object="${editedPost}" th:action="@{'/editPost/' + ${post.id}}"  method="post">
+    <h1> <textarea name="Titulo" id="Titulo" th:text="${post.title}" th:field="*{title}"></textarea></h1><br>
+    <h2 > <textarea name="text" id="Texto" th:text="${post.text}" th:field="*{text}"> </textarea></h2><br>
     <h3 th:text="${post.date}"></h3>
     <h3><a th:href="@{'/user/'+${post.author.id}}" th:text="'Made by : '+ ${post.author.name} "> </a></h3>
 
+    <br><button type="submit">Modificar POST</button>
+    </form>
     <br>
     <br>
     <br>
-
-    <h4><a  th:href = "@{'/editPost/'+${post.id}}"  th:text = "${modifyEnable}" > </a></h4>
 
 </body>
 </html>

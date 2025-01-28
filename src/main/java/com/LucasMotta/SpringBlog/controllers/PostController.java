@@ -30,9 +30,28 @@ public class PostController {
 	
 	@GetMapping("/post/{id}")
 	public String getPostPage(@PathVariable Long id,Model model) {
+		String currentUserName = ((UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
+		
 		Post post = postRepository.findById(id).get();
+		
+		String modifyEnable = "";
+		if(post.getAuthor().getName().equals(currentUserName)) {
+			modifyEnable = "Modificar Post";
+			model.addAttribute("modifyEnable", modifyEnable);
+		}else {
+			model.addAttribute("modifyEnable", modifyEnable);
+		}
 		model.addAttribute("post", post);
 		return "post";
+	}
+	
+	@GetMapping("/editPost/{id}")
+	public String getEditPostPage(@PathVariable Long id,Model model) {
+		Post post = postRepository.findById(id).get();
+		Post editedPost = new Post();
+		model.addAttribute("post",post);
+		model.addAttribute("editedPost", editedPost);
+		return "editPost";
 	}
 	
 	@GetMapping("/newPost")
@@ -53,6 +72,20 @@ public class PostController {
 		postRepository.save(post);
 		
 		return "redirect:/";
+	}
+	
+	@PostMapping("/editPost/{id}")
+	public String postEditedPost(@PathVariable Long id, Model model,@ModelAttribute Post editedPost) {
+		
+		Post post = postRepository.findById(id).get();
+		post.setTitle(editedPost.getTitle());
+		post.setText(editedPost.getText());
+		
+		postRepository.save(post);
+		
+		return "redirect:/post/"+ String.valueOf( post.getId());
+		
+		
 	}
 	
 
