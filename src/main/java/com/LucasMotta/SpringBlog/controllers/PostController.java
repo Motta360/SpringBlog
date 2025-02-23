@@ -35,11 +35,15 @@ public class PostController {
 		Post post = postRepository.findById(id).get();
 		
 		String modifyEnable = "";
+		String deleteEnable = "";
 		if(post.getAuthor().getName().equals(currentUserName)) {
 			modifyEnable = "Modificar Post";
+			deleteEnable = "Deletar Post";
 			model.addAttribute("modifyEnable", modifyEnable);
+			model.addAttribute("deleteEnable", deleteEnable);
 		}else {
 			model.addAttribute("modifyEnable", modifyEnable);
+			model.addAttribute("deleteEnable", deleteEnable);
 		}
 		model.addAttribute("post", post);
 		return "post";
@@ -59,6 +63,13 @@ public class PostController {
 		Post post = new Post();
 		model.addAttribute("post", post);
 		return "newPost";
+		
+	}
+	
+	@GetMapping("/deletePost/{id}")
+	public String deletePost(Model model,@PathVariable Long id) {
+		postRepository.deleteById(id);
+		return "redirect:/";
 		
 	}
 	

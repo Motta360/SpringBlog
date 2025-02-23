@@ -23,7 +23,9 @@
     <br>
     <br>
 
-    <h4><a  th:href = "@{'/editPost/'+${post.id}}"  th:text = "${modifyEnable}" > </a></h4>
+    <h4><a  th:href = "@{'/editPost/'+${post.id}}"  th:text = "${modifyEnable}" > </a></h4><br>
+    <h4><a  th:href = "@{'/deletePost/'+${post.id}}"  th:text = "${deleteEnable}" > </a></h4>
+
 
 </body>
 </html>
